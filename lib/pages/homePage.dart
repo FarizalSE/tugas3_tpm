@@ -270,24 +270,67 @@ class MenuBantuan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Padding(
-        padding: EdgeInsets.all(24.0),
-        child: Card(
-          elevation: 5,
+    final List<Map<String, String>> bantuanItems = [
+      {
+        'judul': 'Stopwatch',
+        'deskripsi':
+            'Fitur Stopwatch digunakan untuk menghitung waktu dengan presisi. Tekan tombol mulai untuk memulai stopwatch dan tombol reset untuk mengatur ulang.',
+      },
+      {
+        'judul': 'Jenis Bilangan',
+        'deskripsi':
+            'Fitur Jenis Bilangan membantu mengidentifikasi apakah angka yang Anda masukkan termasuk bilangan genap, ganjil, positif, atau negatif.',
+      },
+      {
+        'judul': 'Tracking LBS',
+        'deskripsi':
+            'Fitur Tracking LBS digunakan untuk mendeteksi lokasi Anda saat ini menggunakan layanan lokasi dari perangkat.',
+      },
+      {
+        'judul': 'Konversi Waktu',
+        'deskripsi':
+            'Fitur Konversi Waktu membantu mengubah satuan waktu dari detik ke menit, jam, atau format lainnya secara cepat.',
+      },
+      {
+        'judul': 'Rekomendasi Situs',
+        'deskripsi':
+            'Fitur Rekomendasi Situs menampilkan daftar website pilihan yang direkomendasikan sesuai kategori tertentu.',
+      },
+      {
+        'judul': 'Logout',
+        'deskripsi':
+            'Tekan ikon logout di pojok kanan atas pada halaman utama untuk keluar dari akun Anda.',
+      },
+    ];
+
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: bantuanItems.length,
+      itemBuilder: (context, index) {
+        return Card(
+          elevation: 3,
+          margin: const EdgeInsets.symmetric(vertical: 8),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16)),
+            borderRadius: BorderRadius.circular(12),
           ),
-          child: Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Text(
-              'Jika mengalami kendala, silakan hubungi tim pengembang melalui email:\n\nsupport@contoh.com',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16, height: 1.5),
+          child: ExpansionTile(
+            title: Text(
+              bantuanItems[index]['judul']!,
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  bantuanItems[index]['deskripsi']!,
+                  style: const TextStyle(fontSize: 14, height: 1.5),
+                  textAlign: TextAlign.justify,
+                ),
+              ),
+            ],
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
